@@ -104,8 +104,9 @@ public class PingPongEndpoint {
 			return "redirect:/";
 		}
 
-		first_matrix = new int[row1.length][dummy_columns1];
-		second_matrix = new int[row2.length][dummy_columns2];
+		int size = row1.length;
+		first_matrix = new int[size][size];
+		second_matrix = new int[size][size];
 		int i = 0;
 		int r = 0;
 		int c = 0;
@@ -113,14 +114,23 @@ public class PingPongEndpoint {
 		while (r < row1.length){
 			String [] columns1 = row1[r].split(" ");
 			String [] columns2 = row2[r].split(" ");
+			for (int k=0; k<columns1.length; k++){
+				columns1[k] = columns1[k].replaceAll("[^0-9]","");
+				columns2[k] = columns2[k].replaceAll("[^0-9]","");
+			}
 			System.out.println("Printing columns1");
 			printArray(columns1);
 			System.out.println("Printing 2");
 			printArray(columns2);
 			
 			while (c < columns2.length){
-				first_matrix [r][c] = Integer.parseInt(columns1[i].substring(0,1));
-				second_matrix [r][c] = Integer.parseInt(columns2[i].substring(0,1));
+				try{
+					first_matrix [r][c] = Integer.parseInt(columns1[i]);
+					second_matrix [r][c] = Integer.parseInt(columns2[i]);
+				}
+				catch(Exception e){
+					System.out.println("Problem is when r="+r+" c="+c+" i="+i)
+				}
 				i++;
 				c++;
 			}
