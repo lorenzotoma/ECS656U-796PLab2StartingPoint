@@ -123,8 +123,9 @@ public class PingPongEndpoint {
 			c=0;
 			r++;
 		}
-
-		
+		String m = "Great success"+"<br>"+"Matrix 1"+"<br>"+m1.replaceAll("\n","<br>")+"<br>"+"Matrix 2"+"<br>"+m2.replaceAll("\n","<br>");
+		redirectAttributes.addFlashAttribute("message", m);
+		return ("redirect:/");	
 	}
 	// code taken from https://www.geeksforgeeks.org/program-to-find-whether-a-given-number-is-power-of-2/
 	public static boolean CheckIfPowerOf2 (int n){
