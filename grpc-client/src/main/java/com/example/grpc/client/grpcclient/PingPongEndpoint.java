@@ -70,8 +70,8 @@ public class PingPongEndpoint {
 		String[] row2 = m2.split("\n");
 		System.out.println(row1.lenght);
 		System.out.println(row2.lenght);
-		
-		if (!CheckIfPowerOf2(row1.length) || !CheckIfPowerOf2(row2.length){
+
+		if (!CheckIfPowerOf2(row1.length) || !CheckIfPowerOf2(row2.length)){
 			redirectAttributes.addFlashAttribute("message", "The matrices provided are not in the power of 2");
 			return "redirect:/";
 
@@ -83,7 +83,7 @@ public class PingPongEndpoint {
 			return "redirect:/";
 		}
 		
-		int i = 0
+		int i = 0;
 		int r = 0;
 		int c = 0;
 		String [] columns1 = row1.split(" ");
