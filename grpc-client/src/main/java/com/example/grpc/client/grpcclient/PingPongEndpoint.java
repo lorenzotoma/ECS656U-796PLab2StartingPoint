@@ -97,15 +97,15 @@ public class PingPongEndpoint {
 			}
 		}
 
-		int dummy_columns1 = row1[0].split(" ");
-		int dummy_columns2 = row2[0].split(" ");
+		int dummy_columns1 = row1[0].split(" ").length;
+		int dummy_columns2 = row2[0].split(" ").length;
 		if (dummy_columns1.length != dummy_columns2.length){
 			redirectAttributes.addFlashAttribute("message", "The matrices should be of same size");
 			return "redirect:/";
 		}
 
-		first_matrix = new int[row1.length][dummy_columns1.length];
-		second_matrix = new int[row2.length][dummy_columns2.length];
+		first_matrix = new int[row1.length][dummy_columns1];
+		second_matrix = new int[row2.length][dummy_columns2];
 		int i = 0;
 		int r = 0;
 		int c = 0;
@@ -135,7 +135,7 @@ public class PingPongEndpoint {
 			return false;
 		
 		// recursive function call
-		return CheckIfOowerOf2(n / 2);
+		return CheckIfPowerOf2(n / 2);
 	}
 	
 }
