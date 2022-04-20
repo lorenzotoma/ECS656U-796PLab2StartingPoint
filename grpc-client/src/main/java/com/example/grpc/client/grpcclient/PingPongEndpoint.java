@@ -112,7 +112,7 @@ public class PingPongEndpoint {
 
 		while (r < row1.length){
 			String [] columns1 = row1[r].replaceAll("[^\d\. ]","").split(" ");
-			String [] columns2 = row2[r].replaceAll("[^\d\. ]","").split(" ");;
+			String [] columns2 = row2[r].replaceAll("[^\d\. ]","").split(" ");
 			
 			while (c < columns2.length){
 				first_matrix [r][c] = Integer.parseInt(columns1[i]);
