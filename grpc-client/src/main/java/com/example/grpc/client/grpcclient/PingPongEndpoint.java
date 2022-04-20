@@ -129,7 +129,7 @@ public class PingPongEndpoint {
 					second_matrix [r][c] = Integer.parseInt(columns2[i]);
 				}
 				catch(Exception e){
-					System.out.println("Problem is when r="+r+" c="+c+" i="+i)
+					System.out.println("Problem is when r="+r+" c="+c+" i="+i);
 				}
 				i++;
 				c++;
