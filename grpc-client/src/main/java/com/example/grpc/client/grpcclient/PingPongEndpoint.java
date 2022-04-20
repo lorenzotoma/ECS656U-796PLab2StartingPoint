@@ -116,6 +116,17 @@ public class PingPongEndpoint {
 
 		
 	}
+	// code taken from https://www.geeksforgeeks.org/program-to-find-whether-a-given-number-is-power-of-2/
+	public static boolean CheckIfPowerOf2 (int n){
+		if (n == 1)
+			return true;
+		else if (n % 2 != 0 ||
+				n ==0)
+			return false;
+		
+		// recursive function call
+		return CheckIfOowerOf2(n / 2);
+	}
 	
 }
 
