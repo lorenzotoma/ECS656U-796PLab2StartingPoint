@@ -99,7 +99,7 @@ public class PingPongEndpoint {
 
 		int dummy_columns1 = row1[0].split(" ").length;
 		int dummy_columns2 = row2[0].split(" ").length;
-		if (dummy_columns1.length != dummy_columns2.length){
+		if (dummy_columns1 != dummy_columns2){
 			redirectAttributes.addFlashAttribute("message", "The matrices should be of same size");
 			return "redirect:/";
 		}
