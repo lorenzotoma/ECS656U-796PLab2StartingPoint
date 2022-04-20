@@ -113,11 +113,14 @@ public class PingPongEndpoint {
 		while (r < row1.length){
 			String [] columns1 = row1[r].split(" ");
 			String [] columns2 = row2[r].split(" ");
-			
+			System.out.println("Printing columns1");
+			printArray(columns1)
+			System.out.println("Printing 2");
+			printArray(columns2);
 			
 			while (c < columns2.length){
-				first_matrix [r][c] = Integer.parseInt(columns1[i].replaceAll("[^0-9]", ""));
-				second_matrix [r][c] = Integer.parseInt(columns2[i].replaceAll("[^0-9]", ""));
+				first_matrix [r][c] = Integer.parseInt(columns1[i].substring(0,1));
+				second_matrix [r][c] = Integer.parseInt(columns2[i].substring(0,1));
 				i++;
 				c++;
 			}
@@ -138,6 +141,12 @@ public class PingPongEndpoint {
 		
 		// recursive function call
 		return CheckIfPowerOf2(n / 2);
+	}
+
+	private void printArray(String[] a){
+		for(String e : a){
+			System.out.println(e);
+		}
 	}
 	
 }
