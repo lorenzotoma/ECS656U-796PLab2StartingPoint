@@ -54,16 +54,14 @@ public class PingPongEndpoint {
 	
 	@PostMapping("/")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file,@RequestParam("file2") MultipartFile file2, RedirectAttributes redirectAttributes) throws IOException{
-		// if (file.getBytes().length!=0 && file2.getBytes().length!=0){
-		// 	redirectAttributes.addFlashAttribute("message", "Both files have been uploaded and are not empty");
-		// 	return "redirect:/";
-		// }
+		
+		//checks both files attached and if they are empty prints error message
 		if (file.getBytes().length==0 || file2.getBytes().length==0) {
 			redirectAttributes.addFlashAttribute("message", "One or both files that you have provided are empty! Please check you have uploaded the correct files");
 			return "redirect:/";
 
 		}
-
+		 //matrices
 		m1 = new String(file.getBytes());
 		m2 = new String(file2.getBytes());
 
@@ -78,39 +76,44 @@ public class PingPongEndpoint {
 		System.out.println(row1.length);
 		System.out.println(row2.length);
 
+
+		// checks if the dimensions of the uploaded matrices are in power of 2
 		if (!CheckIfPowerOf2(row1.length) || !CheckIfPowerOf2(row2.length)){
 			redirectAttributes.addFlashAttribute("message", "The matrices provided are not in the power of 2");
 			return "redirect:/";
 
 		}
-
+		// checks if the number of rows of the two matrices is the same
 		if (row1.length != row2.length){
 			redirectAttributes.addFlashAttribute("message", "The matrices should be of same size");
-			
 			return "redirect:/";
 		}
-		for (String rr : row1){
-			String [] cc = rr.split(" ");
-			if(cc.length != row1.length){
-				redirectAttributes.addFlashAttribute("message", "The matrices should be square");
-				return "redirect:/";
-			}
-		}
-		for (String rr : row2){
-			String [] cc = rr.split(" ");
-			if(cc.length != row2.length){
+
+		// what
+		for (String row : row1){
+			String [] column = row.split(" ");
+			if(column.length != row1.length){
 				redirectAttributes.addFlashAttribute("message", "The matrices should be square");
 				return "redirect:/";
 			}
 		}
 
-		int dummy_columns1 = row1[0].split(" ").length;
-		int dummy_columns2 = row2[0].split(" ").length;
-		if (dummy_columns1 != dummy_columns2){
+		// 
+		for (String row : row2){
+			String [] column = row.split(" ");
+			if(column.length != row2.length){
+				redirectAttributes.addFlashAttribute("message", "The matrices should be square");
+				return "redirect:/";
+			}
+		}
+
+
+		if (row1[0].split(" ").length != row2[0].split(" ").length){
 			redirectAttributes.addFlashAttribute("message", "The matrices should be of same size");
 			return "redirect:/";
 		}
-
+		
+		//used system print to check in the terminal for bugs
 		int size = row1.length;
 		System.out.println("lengths");
 		System.out.println(row1.length);
@@ -121,6 +124,7 @@ public class PingPongEndpoint {
 		int r = 0;
 		int c = 0;
 
+		//printing matrices
 		while (r < row1.length){
 			String [] columns1 = row1[r].trim().split(" ");
 			String [] columns2 = row2[r].trim().split(" ");
@@ -147,6 +151,7 @@ public class PingPongEndpoint {
 		return ("redirect:/showUpload");	
 	}
 
+	//display method for the matrices uploaded
 	@GetMapping("/showUpload")
 	@ResponseBody
 	public String show() {
