@@ -144,7 +144,7 @@ public class PingPongEndpoint {
 	@GetMapping("/showUpload")
 	@ResponseBody
 	public String show() {
-		String message = "Uploaded<br><br>"+m1.replaceAll("\n","<br>")+"<br>"+m2.replaceAll("\n","<br>");
+		String message = "Uploaded<br><br>"+m1.replaceAll("\n","<br>")+"<br><br>"+m2.replaceAll("\n","<br>");
 		return message;
 	}
 	// code taken from https://www.geeksforgeeks.org/program-to-find-whether-a-given-number-is-power-of-2/
