@@ -60,7 +60,7 @@ public class PingPongEndpoint {
 		String m1 = new String(file.getBytes());
 		String m2 = new String(file2.getBytes());
 
-		if (matrix1.length()!= 0 && matrix2.length()!=0){
+		if (m1.length()!= 0 && m2.length()!=0){
 			System.out.println(m1);
 			System.out.println(m2);
 
