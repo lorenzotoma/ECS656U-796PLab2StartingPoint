@@ -105,6 +105,9 @@ public class PingPongEndpoint {
 		}
 
 		int size = row1.length;
+		System.out.println("lengths");
+		System.out.println(row1.length);
+		System.out.println(row2.length);
 		first_matrix = new int[size][size];
 		second_matrix = new int[size][size];
 		int i = 0;
@@ -112,12 +115,8 @@ public class PingPongEndpoint {
 		int c = 0;
 
 		while (r < row1.length){
-			String [] columns1 = row1[r].split(" ");
-			String [] columns2 = row2[r].split(" ");
-			for (int k=0; k<columns1.length; k++){
-				columns1[k] = columns1[k].replaceAll("[^0-9]","");
-				columns2[k] = columns2[k].replaceAll("[^0-9]","");
-			}
+			String [] columns1 = row1[r].trim().split(" ");
+			String [] columns2 = row2[r].trim().split(" ");
 			System.out.println("Printing columns1");
 			printArray(columns1);
 			System.out.println("Printing 2");
@@ -137,7 +136,7 @@ public class PingPongEndpoint {
 			c=0;
 			r++;
 		}
-		String m = "Great success"+"<br>"+"Matrix 1"+"<br>"+m1.replaceAll("\n","<br>")+"<br>"+"Matrix 2"+"<br>"+m2.replaceAll("\n","<br>");
+		String m = "Great success"+"<\n>"+"Matrix 1"+"<\n>"+m1+"<\n>"+"Matrix 2"+"<\n>"+m2;
 		redirectAttributes.addFlashAttribute("message", m);
 		return ("redirect:/");	
 	}
