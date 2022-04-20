@@ -23,8 +23,9 @@ import java.io.IOException;
 public class PingPongEndpoint {    
 
 	private int[][] first_matrix;
-		
 	private int[][] second_matrix;
+	private String m1;
+	private String m2;
 
 	GRPCClientService grpcClientService;    
 	@Autowired
@@ -57,8 +58,8 @@ public class PingPongEndpoint {
 
 		}
 
-		String m1 = new String(file.getBytes());
-		String m2 = new String(file2.getBytes());
+		m1 = new String(file.getBytes());
+		m2 = new String(file2.getBytes());
 
 		if (m1.length()!= 0 && m2.length()!=0){
 			System.out.println(m1);
@@ -137,9 +138,14 @@ public class PingPongEndpoint {
 			i=0;
 			r++;
 		}
-		String m = "Great success"+"<\n>"+"Matrix 1"+"<\n>"+m1+"<\n>"+"Matrix 2"+"<\n>"+m2;
-		redirectAttributes.addFlashAttribute("message", m);
-		return ("redirect:/");	
+		return ("redirect:/showUpload");	
+	}
+
+	@GetMapping("/showUpload")
+	@ResponseBody
+	public String show() {
+		String message = "Uploaded<br><br>"+m1.replaceAll("\n","<br>")+"<br>"+m2.replaceAll("\n","<br>");
+		return message;
 	}
 	// code taken from https://www.geeksforgeeks.org/program-to-find-whether-a-given-number-is-power-of-2/
 	public static boolean CheckIfPowerOf2 (int n){
