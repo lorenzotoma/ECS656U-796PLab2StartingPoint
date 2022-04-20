@@ -114,7 +114,7 @@ public class PingPongEndpoint {
 			String [] columns1 = row1[r].split(" ");
 			String [] columns2 = row2[r].split(" ");
 			System.out.println("Printing columns1");
-			printArray(columns1)
+			printArray(columns1);
 			System.out.println("Printing 2");
 			printArray(columns2);
 			
