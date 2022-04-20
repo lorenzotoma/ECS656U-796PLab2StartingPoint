@@ -111,13 +111,13 @@ public class PingPongEndpoint {
 		int c = 0;
 
 		while (r < row1.length){
-			String [] columns1 = row1[r].replaceAll("[^\\s\\s0-9]","").split(" ");
-			String [] columns2 = row2[r].replaceAll("[^\\s\\s0-9]","").split(" ");
+			String [] columns1 = row1[r].split(" ");
+			String [] columns2 = row2[r].split(" ");
 			
 			
 			while (c < columns2.length){
-				first_matrix [r][c] = Integer.parseInt(columns1[i]);
-				second_matrix [r][c] = Integer.parseInt(columns2[i]);
+				first_matrix [r][c] = Integer.parseInt(columns1[i].replaceAll("[^0-9]", ""));
+				second_matrix [r][c] = Integer.parseInt(columns2[i].replaceAll("[^0-9]", ""));
 				i++;
 				c++;
 			}
