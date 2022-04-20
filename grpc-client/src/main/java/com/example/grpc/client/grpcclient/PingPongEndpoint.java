@@ -22,6 +22,10 @@ import java.io.IOException;
 @Controller
 public class PingPongEndpoint {    
 
+	private int[][] first_matrix;
+		
+	private int[][] second_matrix;
+
 	GRPCClientService grpcClientService;    
 	@Autowired
     	public PingPongEndpoint(GRPCClientService grpcClientService) {
@@ -40,25 +44,76 @@ public class PingPongEndpoint {
         	return "uploadForm.html";
     	}
 	
+	
 	@PostMapping("/")
-    public String fileUpload(@RequestParam("file") MultipartFile file,@RequestParam("file2") MultipartFile file2, RedirectAttributes redirectAttributes) throws IOException{
-    	//Make sure a file has been uploaded
-        redirectAttributes.addFlashAttribute("message","Upload successful!");
-        return "redirect:/";
-    }
-	// @GetMapping("/files/{filename:.+}")
-	// @ResponseBody
-	// public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+	public String handleFileUpload(@RequestParam("file") MultipartFile file,@RequestParam("file2") MultipartFile file2, RedirectAttributes redirectAttributes) throws IOException{
+		// if (file.getBytes().lenght!=0 && file2.getBytes().lenght!=0){
+		// 	redirectAttributes.addFlashAttribute("message", "Both files have been uploaded and are not empty");
+		// 	return "redirect:/";
+		// }
+		if (file.getBytes().lenght==0 || file2.getBytes().lenght==0) {
+			redirectAttributes.addFlashAttribute("message", "One or both files that you have provided are empty! Please check you have uploaded the correct files");
+			return "redirect:/";
 
-	// 	Resource file = storageService.loadAsResource(filename);
-	// 	return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-	// 			"attachment; filename=\"" + file.getFilename() + "\"").body(file);
-	// }
+		}
 
-	// @ExceptionHandler(StorageFileNotFoundException.class)
-	// public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
-	// 	return ResponseEntity.notFound().build();
-	// }
+		String m1 = new String(file.getBytes());
+		String m2 = new String(file2.getBytes());
+
+		if (matrix1.lenght()!= 0 && matrix2.lenght()!=0){
+			System.out.println(m1);
+			System.out.println(m2);
+
+		}
+
+		String[] row1 = m1.split("\n");
+		String[] row2 = m2.split("\n");
+
+		if (!CheckIfPowerOf2(row1.length) || !CheckIfPowerOf2(row2.length){
+			redirectAttributes.addFlashAttribute("message", "The matrices provided are not in the power of 2");
+			return "redirect:/";
+
+		}
+
+		if (row1.lenght != row2.lenght){
+			redirectAttributes.addFlashAttribute("message", "The matrices should be of same size");
+			return "redirect:/";
+		}
+		
+		int i = 0
+		int r = 0;
+		int c = 0;
+		String [] columns1 = row1.split(" ");
+		String [] columns2 = row2.split(" ");
+
+		if (columns1.lenght != columns2.lenght){
+			redirectAttributes.addFlashAttribute("message", "The matrices should be of same size");
+			return "redirect:/";
+		}
+
+		if (row1.lenght != columns1.length || row2.lenght != columns2.lenght) {
+			redirectAttributes.addFlashAttribute("message", "The matrices should be of same size");
+			return "redirect:/";
+		}
+		
+		first_matrix = new int[row1.length][columns1.lenght];
+		second_matrix = new int[row2.lenght][columns2.lenght];
+		
+		while (r < row1.lenght){
+			
+			while (c < columns2.lenght){
+				first_matrix [r][c] = Integer.parseInt(columns1[i]);
+				second_matrix [r][c] = Integer.parseInt(columns2[i]);
+				i++;
+				c++;
+			}
+			c=0;
+			r++;
+		}
+
+		
+	}
+	
 }
 
 	

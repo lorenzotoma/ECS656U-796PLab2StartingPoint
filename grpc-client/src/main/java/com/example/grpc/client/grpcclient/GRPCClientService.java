@@ -13,8 +13,12 @@ import io.grpc.ManagedChannelBuilder;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Service;
+
 @Service
 public class GRPCClientService {
+	
+	
+	
     public String ping() {
         	ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 9090)
                 .usePlaintext()
@@ -46,38 +50,17 @@ public class GRPCClientService {
 		String resp= A.getC00()+" "+A.getC01()+"<br>"+A.getC10()+" "+A.getC11()+"\n";
 		return resp;
     }
+
+	
+	// code taken from https://www.geeksforgeeks.org/program-to-find-whether-a-given-number-is-power-of-2/
+	public static boolean CheckIfPowerOf2 (int n){
+		if (n == 1)
+			return true;
+		else if (n % 2 != 0 ||
+				n ==0)
+			return false;
+		
+		// recursive function call
+		return CheckIfOowerOf2(n / 2);
+	}
 }
-
-	// Java program of the above approach
-
-
-// class GFG {
-
-// 	// Function to check if x is power of 2
-// 	static boolean isPowerofTwo(int n)
-// 	{
-// 		if (n == 0)
-// 			return false;
-// 		if ((n & (~(n - 1))) == n)
-// 			return true;
-// 		return false;
-// 	}
-// 	public static void main(String[] args)
-// 	{
-// 		if (isPowerofTwo(30) == true)
-// 			System.out.println("Yes");
-// 		else
-// 			System.out.println("No");
-	
-// 		if (isPowerofTwo(128) == true)
-// 			System.out.println("Yes");
-// 		else
-// 			System.out.println("No");
-				
-// 	}
-// }
-
-// // This code is contributed by rajsanghavi9.
-
-	
-// }
