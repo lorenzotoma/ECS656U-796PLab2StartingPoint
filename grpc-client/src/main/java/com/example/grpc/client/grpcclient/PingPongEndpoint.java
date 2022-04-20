@@ -82,27 +82,37 @@ public class PingPongEndpoint {
 			
 			return "redirect:/";
 		}
-		
+		for (String rr : rows1){
+			String [] cc = rows1.split(" ");
+			if(cc.length != row1.length){
+				redirectAttributes.addFlashAttribute("message", "The matrices should be square");
+				return "redirect:/";
+			}
+		}
+		for (String rr : rows2){
+			String [] cc = rows2.split(" ");
+			if(cc.length != row2.length){
+				redirectAttributes.addFlashAttribute("message", "The matrices should be square");
+				return "redirect:/";
+			}
+		}
+
+		int dummy_columns1 = row1[0].split(" ");
+		int dummy_columns2 = row2[0].split(" ");
+		if (dummy_columns1.length != dummy_columns2.length){
+			redirectAttributes.addFlashAttribute("message", "The matrices should be of same size");
+			return "redirect:/";
+		}
+
+		first_matrix = new int[row1.length][dummy_columns1.length];
+		second_matrix = new int[row2.length][dummy_columns2.length];
 		int i = 0;
 		int r = 0;
 		int c = 0;
-		String [] columns1 = row1.split(" ");
-		String [] columns2 = row2.split(" ");
 
-		if (columns1.length != columns2.length){
-			redirectAttributes.addFlashAttribute("message", "The matrices should be of same size");
-			return "redirect:/";
-		}
-
-		if (row1.length != columns1.length || row2.length != columns2.length) {
-			redirectAttributes.addFlashAttribute("message", "The matrices should be of same size");
-			return "redirect:/";
-		}
-
-		first_matrix = new int[row1.length][columns1.length];
-		second_matrix = new int[row2.length][columns2.length];
-		
 		while (r < row1.length){
+			String [] columns1 = row1[r].split(" ");
+			String [] columns2 = row2[r].split(" ");
 			
 			while (c < columns2.length){
 				first_matrix [r][c] = Integer.parseInt(columns1[i]);
