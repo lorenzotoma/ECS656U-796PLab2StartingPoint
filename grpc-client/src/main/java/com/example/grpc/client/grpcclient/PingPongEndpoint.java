@@ -83,14 +83,14 @@ public class PingPongEndpoint {
 			return "redirect:/";
 		}
 		for (String rr : row1){
-			String [] cc = row1.split(" ");
+			String [] cc = rr.split(" ");
 			if(cc.length != row1.length){
 				redirectAttributes.addFlashAttribute("message", "The matrices should be square");
 				return "redirect:/";
 			}
 		}
 		for (String rr : row2){
-			String [] cc = row2.split(" ");
+			String [] cc = rr.split(" ");
 			if(cc.length != row2.length){
 				redirectAttributes.addFlashAttribute("message", "The matrices should be square");
 				return "redirect:/";
