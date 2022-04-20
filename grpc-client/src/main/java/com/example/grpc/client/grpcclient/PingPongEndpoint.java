@@ -39,7 +39,12 @@ public class PingPongEndpoint {
     @GetMapping("/add")
 	@ResponseBody
 		public String add() {
-			return grpcClientService.add();
+			return grpcClientService.add(first_matrix, second_matrix);
+		}
+	@GetMapping("/multiply")
+	@ResponseBody
+		public String multiply() {
+			return grpcClientService.multiply(first_matrix, second_matrix);
 		}
 	@GetMapping("/")
     	public String home() {
