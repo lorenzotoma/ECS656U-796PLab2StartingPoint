@@ -47,11 +47,11 @@ public class PingPongEndpoint {
 	
 	@PostMapping("/")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file,@RequestParam("file2") MultipartFile file2, RedirectAttributes redirectAttributes) throws IOException{
-		// if (file.getBytes().lenght!=0 && file2.getBytes().lenght!=0){
+		// if (file.getBytes().length!=0 && file2.getBytes().length!=0){
 		// 	redirectAttributes.addFlashAttribute("message", "Both files have been uploaded and are not empty");
 		// 	return "redirect:/";
 		// }
-		if (file.getBytes().lenght==0 || file2.getBytes().lenght==0) {
+		if (file.getBytes().length==0 || file2.getBytes().length==0) {
 			redirectAttributes.addFlashAttribute("message", "One or both files that you have provided are empty! Please check you have uploaded the correct files");
 			return "redirect:/";
 
@@ -60,7 +60,7 @@ public class PingPongEndpoint {
 		String m1 = new String(file.getBytes());
 		String m2 = new String(file2.getBytes());
 
-		if (matrix1.lenght()!= 0 && matrix2.lenght()!=0){
+		if (matrix1.length()!= 0 && matrix2.length()!=0){
 			System.out.println(m1);
 			System.out.println(m2);
 
@@ -68,8 +68,8 @@ public class PingPongEndpoint {
 
 		String[] row1 = m1.split("\n");
 		String[] row2 = m2.split("\n");
-		System.out.println(row1.lenght);
-		System.out.println(row2.lenght);
+		System.out.println(row1.length);
+		System.out.println(row2.length);
 
 		if (!CheckIfPowerOf2(row1.length) || !CheckIfPowerOf2(row2.length)){
 			redirectAttributes.addFlashAttribute("message", "The matrices provided are not in the power of 2");
@@ -77,7 +77,7 @@ public class PingPongEndpoint {
 
 		}
 
-		if (row1.lenght != row2.lenght){
+		if (row1.length != row2.length){
 			redirectAttributes.addFlashAttribute("message", "The matrices should be of same size");
 			
 			return "redirect:/";
@@ -89,22 +89,22 @@ public class PingPongEndpoint {
 		String [] columns1 = row1.split(" ");
 		String [] columns2 = row2.split(" ");
 
-		if (columns1.lenght != columns2.lenght){
+		if (columns1.length != columns2.length){
 			redirectAttributes.addFlashAttribute("message", "The matrices should be of same size");
 			return "redirect:/";
 		}
 
-		if (row1.lenght != columns1.length || row2.lenght != columns2.lenght) {
+		if (row1.length != columns1.length || row2.length != columns2.length) {
 			redirectAttributes.addFlashAttribute("message", "The matrices should be of same size");
 			return "redirect:/";
 		}
 
-		first_matrix = new int[row1.length][columns1.lenght];
-		second_matrix = new int[row2.lenght][columns2.lenght];
+		first_matrix = new int[row1.length][columns1.length];
+		second_matrix = new int[row2.length][columns2.length];
 		
-		while (r < row1.lenght){
+		while (r < row1.length){
 			
-			while (c < columns2.lenght){
+			while (c < columns2.length){
 				first_matrix [r][c] = Integer.parseInt(columns1[i]);
 				second_matrix [r][c] = Integer.parseInt(columns2[i]);
 				i++;
