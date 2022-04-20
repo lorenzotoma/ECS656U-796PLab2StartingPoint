@@ -68,7 +68,9 @@ public class PingPongEndpoint {
 
 		String[] row1 = m1.split("\n");
 		String[] row2 = m2.split("\n");
-
+		System.out.println(row1.lenght);
+		System.out.println(row2.lenght);
+		
 		if (!CheckIfPowerOf2(row1.length) || !CheckIfPowerOf2(row2.length){
 			redirectAttributes.addFlashAttribute("message", "The matrices provided are not in the power of 2");
 			return "redirect:/";
@@ -77,6 +79,7 @@ public class PingPongEndpoint {
 
 		if (row1.lenght != row2.lenght){
 			redirectAttributes.addFlashAttribute("message", "The matrices should be of same size");
+			
 			return "redirect:/";
 		}
 		
@@ -95,7 +98,7 @@ public class PingPongEndpoint {
 			redirectAttributes.addFlashAttribute("message", "The matrices should be of same size");
 			return "redirect:/";
 		}
-		
+
 		first_matrix = new int[row1.length][columns1.lenght];
 		second_matrix = new int[row2.lenght][columns2.lenght];
 		
