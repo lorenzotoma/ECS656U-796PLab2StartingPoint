@@ -61,7 +61,7 @@ public class PingPongEndpoint {
 			return "redirect:/";
 
 		}
-		 //matrices
+		 //cheks matrices and prints them in terminal if they are not empty
 		m1 = new String(file.getBytes());
 		m2 = new String(file2.getBytes());
 
@@ -71,6 +71,7 @@ public class PingPongEndpoint {
 
 		}
 
+		// this returns an array containing all of the rows for each matrix respectively
 		String[] row1 = m1.split("\n");
 		String[] row2 = m2.split("\n");
 		System.out.println(row1.length);
@@ -89,7 +90,7 @@ public class PingPongEndpoint {
 			return "redirect:/";
 		}
 
-		// what
+		// we are checking if columns and rows have the same length
 		for (String row : row1){
 			String [] column = row.split(" ");
 			if(column.length != row1.length){
@@ -98,7 +99,7 @@ public class PingPongEndpoint {
 			}
 		}
 
-		// 
+		// same for second matrix
 		for (String row : row2){
 			String [] column = row.split(" ");
 			if(column.length != row2.length){
@@ -107,7 +108,7 @@ public class PingPongEndpoint {
 			}
 		}
 
-
+		// checks if the columns of the two matrices have the same length
 		if (row1[0].split(" ").length != row2[0].split(" ").length){
 			redirectAttributes.addFlashAttribute("message", "The matrices should be of same size");
 			return "redirect:/";

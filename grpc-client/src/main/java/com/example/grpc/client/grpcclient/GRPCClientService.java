@@ -30,6 +30,11 @@ public class GRPCClientService {
 		channel.shutdown();        
 		return helloResponse.getPong();
     }
+	// in the end points i provide the two matrices to the add and mult functions as arguments and then I set the entries of the matrix request 
+	// to be the entries of the matrices provided
+	// the two matrices are then either added or multiplied based on the function 
+	// using the function provided in the server
+
     public String add(int[][]matrix1, int[][]matrix2){
 		ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost",9090)
 		.usePlaintext()
