@@ -134,6 +134,7 @@ public class PingPongEndpoint {
 				c++;
 			}
 			c=0;
+			i=0;
 			r++;
 		}
 		String m = "Great success"+"<\n>"+"Matrix 1"+"<\n>"+m1+"<\n>"+"Matrix 2"+"<\n>"+m2;
